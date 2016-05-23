@@ -326,7 +326,7 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
         long lastActiveMillis = getLastActiveMillis();
         long passedTime = System.currentTimeMillis() - lastActiveMillis;
         long timeout = getTimeout();
-        Log.d(TAG,"passedTime "+passedTime);
+        Log.d(TAG,"passedTime "+passedTime+" timeout "+timeout+" lastActiveMillis"+lastActiveMillis);
         if (lastActiveMillis > 0 && passedTime <= timeout) {
             Log.d(TAG, "no enough timeout " + passedTime + " for "
                     + timeout);
