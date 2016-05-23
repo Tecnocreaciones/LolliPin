@@ -326,7 +326,7 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
         long lastActiveMillis = getLastActiveMillis();
         long passedTime = System.currentTimeMillis() - lastActiveMillis;
         long timeout = getTimeout();
-        Log.d(TAG,"passedTime "+passedTime+" timeout "+timeout+" lastActiveMillis"+lastActiveMillis);
+        //Log.d(TAG,"passedTime "+passedTime+" timeout "+timeout+" lastActiveMillis"+lastActiveMillis);
         if (lastActiveMillis > 0 && passedTime <= timeout) {
             Log.d(TAG, "no enough timeout " + passedTime + " for "
                     + timeout);
@@ -345,9 +345,9 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
         String clazzName = activity.getClass().getName();
         Log.d(TAG, "onActivityPaused " + clazzName);
 
-        if (!shouldLockSceen(activity) && !(activity instanceof AppLockActivity)) {
+        //if (!shouldLockSceen(activity) && !(activity instanceof AppLockActivity)) {
             setLastActiveMillis();
-        }
+        //}
     }
 
     @Override
@@ -372,8 +372,8 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
             return;
         }
 
-        if (!shouldLockSceen(activity) && !(activity instanceof AppLockActivity)) {
+        //if (!shouldLockSceen(activity) && !(activity instanceof AppLockActivity)) {
             setLastActiveMillis();
-        }
+        //}
     }
 }
