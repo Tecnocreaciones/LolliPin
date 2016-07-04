@@ -319,7 +319,7 @@ public abstract class AppLockActivity extends PinActivity implements KeyboardBut
                 }
                 break;
             case AppLock.UNLOCK_PIN:
-                if (mLockManager.getAppLock().checkPasscode(mPinCode)) {
+                if (mLockManager.getAppLock()!= null && mLockManager.getAppLock().checkPasscode(mPinCode)) {
                     setResult(RESULT_OK);
                     onPinCodeSuccess();
                     finish();
