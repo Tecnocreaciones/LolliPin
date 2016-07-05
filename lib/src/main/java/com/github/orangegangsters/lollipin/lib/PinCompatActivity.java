@@ -35,7 +35,6 @@ public class PinCompatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         IntentFilter filter = new IntentFilter(AppLockActivity.ACTION_CANCEL);
         LocalBroadcastManager.getInstance(this).registerReceiver(mPinCancelledReceiver, filter);
     }
