@@ -279,7 +279,7 @@ public abstract class AppLockActivity extends PinActivity implements KeyboardBut
     protected void onPinCodeInputed() {
         switch (mType) {
             case AppLock.DISABLE_PINLOCK:
-                if (mLockManager.getAppLock().checkPasscode(mPinCode)) {
+                if (mLockManager.getAppLock() != null && mLockManager.getAppLock().checkPasscode(mPinCode)) {
                     setResult(RESULT_OK);
                     mLockManager.getAppLock().setPasscode(null);
                     onPinCodeSuccess();
@@ -297,8 +297,10 @@ public abstract class AppLockActivity extends PinActivity implements KeyboardBut
             case AppLock.CONFIRM_PIN:
                 if (mPinCode.equals(mOldPinCode)) {
                     setResult(RESULT_OK);
-                    mLockManager.getAppLock().setPasscode(mPinCode);
-                    onPinCodeSuccess();
+                    if(mLockManager.getAppLock() != null){
+                        mLockManager.getAppLock().setPasscode(mPinCode);
+                        onPinCodeSuccess();
+                    }
                     finish();
                 } else {
                     mOldPinCode = "";
@@ -309,14 +311,14 @@ public abstract class AppLockActivity extends PinActivity implements KeyboardBut
                 }
                 break;
             case AppLock.CHANGE_PIN:
-                if (mLockManager.getAppLock().checkPasscode(mPinCode)) {
-                    mType = AppLock.ENABLE_PINLOCK;
-                    setStepText();
-                    setPinCode("");
-                    onPinCodeSuccess();
-                } else {
-                    onPinCodeError();
-                }
+                    if (mLockManager.getAppLock() != null && mLockManager.getAppLock().checkPasscode(mPinCode)) {
+                        mType = AppLock.ENABLE_PINLOCK;
+                        setStepText();
+                        setPinCode("");
+                        onPinCodeSuccess();
+                    } else {
+                        onPinCodeError();
+                    }
                 break;
             case AppLock.UNLOCK_PIN:
                 if (mLockManager.getAppLock()!= null && mLockManager.getAppLock().checkPasscode(mPinCode)) {
